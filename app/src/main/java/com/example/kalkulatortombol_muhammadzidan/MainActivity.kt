@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 
 
 class MainActivity : AppCompatActivity() {
@@ -59,8 +60,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onDigitPressed(digit: String) {
-
-        if (stateError || tvDisplay.text == "Error") {
+        if (tvDisplay.text == "0" && !stateError) {
+            tvDisplay.text = digit
+        } else if (stateError || tvDisplay.text == "Error") {
             tvDisplay.text = digit
             stateError = false
         } else if (tvDisplay.text.toString().contains("Infinity")) {
@@ -100,8 +102,11 @@ class MainActivity : AppCompatActivity() {
                     stateError = true
                     lastNumeric = false
                 } else {
-                    tvDisplay.text = result.toString()
-                    lastDot = false
+                    val intent = Intent(this, ResultActivity::class.java)
+                    intent.putExtra("result", result)
+                    intent.putExtra("nama", "Muhammad Zidan")
+                    intent.putExtra("nim", "225150407111039")
+                    startActivity(intent)
                 }
             } catch (e: ArithmeticException) {
                 tvDisplay.text = "Error"

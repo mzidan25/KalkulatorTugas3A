@@ -246,7 +246,7 @@
             android:layout_gravity="fill"
             android:layout_marginTop="8dp"
             android:background="#FF3B30"
-            android:text="C"
+            android:text="Clear"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
     </GridLayout>
